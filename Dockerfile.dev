@@ -1,0 +1,12 @@
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# when we use docker-compose and defining volumes in there, we don't need to copy the files
+# as they are being referenced via volumes
+COPY . .
+
+CMD ["npm", "run", "start"]
